@@ -2,15 +2,12 @@ package frac64;
 
 import static java.lang.Math.abs;
 
-/**
- * 
- * 00-30: 31 bit unsigned denominator
- * 31-31: zero bit (unused sign)
- * 32-63: 32 bit signed numerator
- *
- */
 public final class FRAC64 {
 
+	static long frac(int integer) {
+		return integer << 32 | 1;		
+	}
+	
 	static long frac(int numerator, int denominator) {
 		if (denominator < 0)
 			numerator = -numerator;
@@ -60,6 +57,13 @@ public final class FRAC64 {
 		}
 		return cancel(n | d);
 	}
+	
+	static long reciprocal(long frac64) {
+		if (frac64 < 0)
+			return abs(frac64) >> 32 | (((long)-((int)frac64)) << 32);
+		return frac64 >> 32 | (frac64 << 32);
+	}
+
 	
 	private static long cancel(long frac64) {
 		int n = numerator(frac64);
