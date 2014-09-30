@@ -32,6 +32,7 @@ public class TestFRAC64 {
 		assertFraction("-3/35", add(frac(1, 5), frac(-2, 7)));
 		assertFraction("1/5", add(frac(-2, 5), frac(3, 5)));
 		assertFraction("-1/5", add(frac(2, 5), frac(3, -5)));
+		assertFraction("2/3571", add(frac(1, 3571), frac(1, 3571)));
 	}
 	
 	@Test
