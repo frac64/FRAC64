@@ -31,7 +31,7 @@ public final class FRAC64 {
 		long r_n = (right >> 32) * l_d;
 		long d = (long)r_d * l_d;
 		// overflow checks
-		return cancel( ((l_n+r_n) << 32) + (int)d);
+		return cancel( ((l_n+r_n) << 32) | (int)d);
 	}
 
 	static long sub(long left, long right) {
@@ -82,6 +82,7 @@ public final class FRAC64 {
 	 * A heavily modified version of Euclidean algorithm trying to reduce use of
 	 * modulo operation.
 	 */
+	@SuppressWarnings("unused")
 	private static int gcd(int a, int b) {
 		int f = 1;
 		while (a > 1 && b > 1 && (a & 1) == 0 && (b & 1) == 0) {
